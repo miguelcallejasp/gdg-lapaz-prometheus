@@ -1,0 +1,33 @@
+name: build
+
+on: [push, pull_request]
+
+env:
+  CONTAINER_NAME: prom101
+  UPSTREAM: miguelcallejasp
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    name: Build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Docker Build
+        run: |
+          export TAG=$(echo /${GITHUB_REF} | cut -d/ -f 4,5)
+          export DOCKER_TAG=${TAG/\//_}
+          if [ ${GITHUB_REPOSITORY_OWNER} == ${UPSTREAM} ]; then
+            docker build -f Dockerfile --tag coffeespiller/prom101:${DOCKER_TAG} .
+          else
+            echo "This build will not generate a Docker Image"
+          fi
+      - name: Push
+        uses: docker/build-push-action@v1
+        with:
+          username: coffeespiller
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          registry: index.docker.io
+          repository: coffeespiller/prom101
+          tags: latest
