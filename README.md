@@ -55,3 +55,7 @@ docker-compose up -d
 ```
 
 The command will build a new container with the current code. This will enable a site at `http://localhost:8080/api/covid`.
+
+### Make it public
+
+`ngrok http 8080`
