@@ -6,3 +6,18 @@ services:
     #image: coffeespiller/prom101:latest
     ports:
       - 8080:8080
+
+  grafana:
+    image: grafana/grafana:6.4.3
+    ports:
+      - 3000:3000
+
+  prometheus:
+    image: prom/prometheus:v2.13.1
+    ports:
+      - 9090:9090
+    volumes:
+      # Mac doesn't support relative paths
+      - /Users/miguel/Documents/Engineering/personal/gdg-lapaz-prometheus/prometheus_config.yml:/etc/prometheus/prometheus.yml
+      # For other OS
+      #- ./prometheus_config.yml:/etc/prometheus/prometheus.yml

@@ -1,0 +1,13 @@
+global:
+  #Short intervals is
+  scrape_interval: 2s
+  evaluation_interval: 30s
+
+scrape_configs:
+  - job_name: 'covid'
+    honor_labels: true
+    static_configs:
+    - targets:
+      - 'covid:8080'
+      labels:
+        app: 'lapaz'
