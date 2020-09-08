@@ -28,7 +28,7 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 7,
-        "w": 14,
+        "w": 17,
         "x": 0,
         "y": 0
       },
@@ -123,8 +123,8 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 4,
-        "x": 14,
+        "w": 7,
+        "x": 17,
         "y": 0
       },
       "id": 5,
@@ -196,7 +196,7 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 7,
-        "w": 14,
+        "w": 17,
         "x": 0,
         "y": 7
       },
@@ -291,8 +291,8 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 4,
-        "x": 14,
+        "w": 7,
+        "x": 17,
         "y": 7
       },
       "id": 6,
@@ -501,5 +501,5 @@
   "timezone": "",
   "title": "COVID GDG Prometheus 101",
   "uid": "eq9GaUvMz",
-  "version": 3
+  "version": 2
 }

@@ -59,3 +59,9 @@ The command will build a new container with the current code. This will enable a
 ### Make it public
 
 `ngrok http 8080`
+
+## Examples
+
+![Website Example](https://storage.googleapis.com/mojix-devops-wildfire-bucket/images/prom101_site.png)
+
+![Grafana](https://storage.googleapis.com/mojix-devops-wildfire-bucket/images/grafana_prom101.png)
