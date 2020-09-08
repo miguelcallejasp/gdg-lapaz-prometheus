@@ -1,3 +1,6 @@
+[![Actions Status](https://github.com/miguelcallejasp/gdg-lapaz-prometheus/workflows/build/badge.svg)](https://github.com/miguelcallejasp/gdg-lapaz-prometheus/actions)
+
+
 # Prometheus 101
 
 Repository of the material needed for the Crash Course Prometheus 101.
