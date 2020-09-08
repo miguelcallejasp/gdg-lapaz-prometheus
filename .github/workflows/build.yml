@@ -28,6 +28,6 @@ jobs:
         with:
           username: coffeespiller
           password: ${{ secrets.DOCKER_PASSWORD }}
-          registry: index.docker.io
+          registry: registry-1.docker.io
           repository: coffeespiller/prom101
           tags: latest
