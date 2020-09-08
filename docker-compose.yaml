@@ -1,0 +1,7 @@
+version: "2.3"
+
+services:
+  covid:
+    image: coffeespiller/covexample:1
+    ports:
+      - 8080:8080
