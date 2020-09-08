@@ -2,6 +2,7 @@ version: "2.3"
 
 services:
   covid:
-    image: coffeespiller/covexample:1
+    build: .
+    #image: coffeespiller/prom101:latest
     ports:
       - 8080:8080
