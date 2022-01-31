@@ -17,7 +17,7 @@ services:
     ports:
       - 9090:9090
     volumes:
-      # Mac doesn't support relative paths
-      - /Users/miguel/Documents/Engineering/personal/gdg-lapaz-prometheus/prometheus_config.yml:/etc/prometheus/prometheus.yml
-      # For other OS
-      #- ./prometheus_config.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus_config.yml:/etc/prometheus/prometheus.yml
+
+  mongo:
+    image: mongo:4
