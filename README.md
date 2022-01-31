@@ -11,9 +11,9 @@ The following metrics are available at the endpoint: `http://localhost:8080/metr
 
 |Metric Type|Metric|Description|
 |---|---|---|
-|`COUNTER`|`gdg_new_cases_total`|This is a counter for new cases. It only goes up.|
-|`COUNTER`|`gdg_new_recovery_total`|This is a counter for a new recovery case. It only goes up.|
-|`GAUGE`|`gdg_active_cases`| This is a gauge value. It goes up or down depending on the action.|
+|`COUNTER`|`new_cases_total`|This is a counter for new cases. It only goes up.|
+|`COUNTER`|`new_recovery_total`|This is a counter for a new recovery case. It only goes up.|
+|`GAUGE`|`active_cases`| This is a gauge value. It goes up or down depending on the action.|
 
 ## Metrics Example
 This is how the metrics would look like:
@@ -21,15 +21,15 @@ This is how the metrics would look like:
 ```
 # HELP gdg_active_cases Casos activos
 # TYPE gdg_active_cases gauge
-gdg_active_cases 1.0
+active_cases 1.0
 
 # HELP gdg_new_cases_total Nuevo caso
 # TYPE gdg_new_cases_total counter
-gdg_new_cases_total 9.0
+new_cases_total 9.0
 
 # HELP gdg_new_recovery_total Nuevo recuperado
 # TYPE gdg_new_recovery_total counter
-gdg_new_recovery_total 8.0
+new_recovery_total 8.0
 
 ```
 
@@ -38,10 +38,10 @@ The following queries can be done over Prometheus.
 
 |Prometheus Query|Description|
 |---|---|
-|`rate(gdg_new_cases_total{}[1m])`| The rate in which new cases are happening|
-|`rate(gdg_new_recovery_total{}[1m])`| The rate in which new cases are happening|
-|`gdg_active_cases`| The total number of active cases.|
-|`gdg_new_recovery_total{}/gdg_new_cases_total{} * 100` | Ratio of incidents|
+|`rate(new_cases_total{}[1m])`| The rate in which new cases are happening|
+|`rate(new_recovery_total{}[1m])`| The rate in which new cases are happening|
+|`active_cases`| The total number of active cases.|
+|`new_recovery_total{}/new_cases_total{} * 100` | Ratio of incidents|
 
 ### Content
 The repository has:
