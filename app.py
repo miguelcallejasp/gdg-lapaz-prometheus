@@ -16,15 +16,13 @@ logging.basicConfig(stream=sys.stdout, level=logging.DEBUG,
 
 app = Flask(__name__)
 
-# prometheus metrics
-
 # App Level monitoring
-ACTIVE_CASES = Gauge('gdg_active_cases', 'Casos activos')
-NEW_CASES = Counter('gdg_new_cases', 'Nuevo caso')
-NEW_RECOVERY = Counter('gdg_new_recovery', 'Nuevo recuperado')
+ACTIVE_CASES = Gauge('active_cases', 'Casos activos')
+NEW_CASES = Counter('new_cases', 'Nuevo caso')
+NEW_RECOVERY = Counter('new_recovery', 'Nuevo recuperado')
 
 # Infrastructure Level monitoring
-API_REQUESTS = Counter('api_requests', 'API Requests')
+API_REQUESTS = Counter('api_requests', 'API Requests', ['path'])
 INSERT_LATENCY = Gauge('insert_latency', 'Insert Latency', ['type'])
 
 # Value calculator
@@ -74,6 +72,11 @@ def metric_insert(latency, type):
     INSERT_LATENCY.labels(type=type).set(latency)
 
 
+def metric_api(path):
+    global API_REQUESTS
+    logging.debug("Saving API Request Metric")
+    API_REQUESTS.labels(path=path).inc()
+
 
 # Flask Apps
 
@@ -81,7 +84,7 @@ def metric_insert(latency, type):
 def insert_database(case_id_unique, collection_name):
     global dbclient
     # Insert random delay between 0.1 and 2 sec
-    sleep(random.random()*2)
+    sleep(random.random() * 2)
     collection = dbclient.get_collection(collection_name)
     collection.insert_one({
         "id_case": str(case_id_unique)
@@ -101,6 +104,7 @@ def new_active_case(path):
 
     metric_insert(delta.total_seconds() * 1000, "new_cases")  # Sending milliseconds precision to metric
     metric_case()
+    metric_api(path)
     metric_active_up(1)
 
 
@@ -114,6 +118,7 @@ def new_recovered_case(path):
     logging.debug("Latency in MongoDB: {}".format(delta))
     metric_insert(delta.total_seconds() * 1000, "recovered_cases")
     metric_recovery()
+    metric_api(path)
     metric_active_down(1)
 
 
